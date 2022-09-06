@@ -3,12 +3,19 @@ package edward;
 public class List {
 
     private Node head;
+    private Node tail;
+
     List(){
         head = new Node();
+        tail = new Node();
+        head.setNext(tail);
+        tail.setPrev(head); //Always points to the head...
     }
 
+    //Returns first Player
     public Player get_first(){
-        return head.getContent();
+        Node n = head.getNext();
+        return n.getContent();
     }
 
     //Returns last Node
@@ -23,7 +30,7 @@ public class List {
     //Returns last Player
     public Player get_last(){
         Node n = get_tail();
-        return n.getContent(); //Why
+        return n.getContent();
     }
 
     //Sets next Player of current Player
@@ -31,6 +38,7 @@ public class List {
         Node n = get_tail();
         Node n2 = new Node(p);
         n.setNext(n2);
+        tail.setPrev(n2);
         System.out.println("Player has been appended:  " + get_last());
     }
 
